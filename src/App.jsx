@@ -10,6 +10,8 @@ function App() {
   const createDeck = () => {
     setDeck([])
     setCount(0)
+    set1(null)
+    set2(null)
     let cache = []
 
     function shuffle(array) {
@@ -49,7 +51,7 @@ function App() {
         set2(null)
       } else {
         setTimeout(() => {
-          reset()
+          resetCards()
         }, 500);
       }
       setCount(turnCount + 1)
@@ -70,9 +72,9 @@ function App() {
 
   }
 
-  const reset = () => {
-    card1.classList.toggle('flip')
-    card2.classList.toggle('flip')
+  const resetCards = () => {
+    card1.classList.remove('flip')
+    card2.classList.remove('flip')
     set1(null)
     set2(null)
   }
@@ -82,7 +84,7 @@ function App() {
 
   return (
     <div className="h-screen w-full bg-gray-800 flex items-center justify-center">
-      <span className='font-bold text-white text-xl absolute top-5' > { turnCount } </span>
+      <span className='font-bold text-white text-xl absolute top-5' > Pokemon Turn: { turnCount } </span>
       <div className='grid grid-cols-4 gap-2' >
         {
           deck.map((text, id) => {
