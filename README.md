@@ -1,6 +1,6 @@
 # memory-game
 
-**Live Website**: [link](link)
+**Live Website**: [link](https://memory-game-gosmac.netlify.app)
 
 Pokemon memory game on `react`.
 
