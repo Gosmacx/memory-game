@@ -80,8 +80,6 @@ function App() {
   }
 
 
-
-
   return (
     <div className="h-screen w-full bg-gray-800 flex items-center justify-center">
       <span className='font-bold text-white text-xl absolute top-5' > Pokemon Turn: { turnCount } </span>
