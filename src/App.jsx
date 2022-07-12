@@ -6,7 +6,8 @@ function App() {
   const [card2, set2] = useState(null)
   const [turnCount, setCount] = useState(0)
   const [deck, setDeck] = useState([])
-
+  const [canClick, setClick] = useState(true)
+  
   const createDeck = () => {
     setDeck([])
     setCount(0)
@@ -47,9 +48,11 @@ function App() {
   useEffect(() => {
     if (card1 && card2) {
       if (card1.secretId == card2.secretId) {
+        console.log("Çalıştım")
         set1(null)
         set2(null)
       } else {
+        setClick(false)
         setTimeout(() => {
           resetCards()
         }, 500);
@@ -59,6 +62,8 @@ function App() {
   }, [card1, card2])
 
   const setCard = (e, secretId) => {
+    console.log(canClick)
+    if (canClick == false) return;
     if (e.classList.contains('flip')) return
     e.classList.toggle('flip')
 
@@ -77,12 +82,13 @@ function App() {
     card2.classList.remove('flip')
     set1(null)
     set2(null)
+    setClick(true)
   }
 
 
   return (
     <div className="h-screen w-full bg-gray-800 flex items-center justify-center">
-      <span className='font-bold text-white text-xl absolute top-5' > Pokemon Turn: { turnCount } </span>
+      <span className='font-bold text-white text-xl absolute top-5' > Pokemon Turn: {turnCount} </span>
       <div className='grid grid-cols-4 gap-2' >
         {
           deck.map((text, id) => {
