@@ -15,17 +15,6 @@ function App() {
     set2(null)
     let cache = []
 
-    function shuffle(array) {
-      let currentIndex = array.length, randomIndex;
-      while (currentIndex != 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex], array[currentIndex]];
-      }
-      return array;
-    }
-
     for (let index = 0; index < 4; index++) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * (100 - 1 + 1) + 1)}`)
         .then(response => response.json())
@@ -37,8 +26,8 @@ function App() {
             cache.push(url);
           }
           if (cache.length == 8) {
-            shuffle(cache)
-            setDeck(cache)
+            let shuffle = cache.sort(() => Math.random() - 0.5)
+            setDeck(shuffle)
           }
         });
     }
